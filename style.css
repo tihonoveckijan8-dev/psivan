@@ -1,0 +1,311 @@
+/* Стили для портала в стиле iPhone (добавить в конец файла style.css) */
+
+/* Улучшенный overlay для портала */
+.portal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Обеспечиваем, что портал никогда не выходит за границы */
+.iphone-portal {
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 40px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+        0 0 30px rgba(147, 112, 219, 0.1);
+    border: 12px solid #111;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Динамическая панель (как в iPhone) */
+.iphone-portal::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 30px;
+    background: #111;
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+}
+
+/* "Камера" iPhone */
+.iphone-portal::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+}
+
+/* Заголовок iPhone-стиля */
+.iphone-title {
+    text-align: center;
+    color: #1d1d1f;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* iOS-стиль для полей ввода */
+.ios-input-group {
+    margin-bottom: 20px;
+}
+
+.ios-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #8e8e93;
+    margin-bottom: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ios-input {
+    width: 100%;
+    padding: 16px;
+    background: #f2f2f7;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    color: #1d1d1f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    transition: all 0.2s;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+}
+
+.ios-input:focus {
+    outline: none;
+    background: #e5e5ea;
+    box-shadow: 0 0 0 2px rgba(147, 112, 219, 0.3);
+}
+
+.ios-input::placeholder {
+    color: #8e8e93;
+    opacity: 0.7;
+}
+
+/* iOS-селект */
+.ios-select {
+    width: 100%;
+    padding: 16px;
+    background: #f2f2f7;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    color: #1d1d1f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 20px;
+    padding-right: 50px;
+    box-sizing: border-box;
+}
+
+/* Кнопка в стиле iOS */
+.ios-button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #9370db, #ff69b4);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+    box-shadow: 0 4px 20px rgba(147, 112, 219, 0.3);
+    box-sizing: border-box;
+}
+
+.ios-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(147, 112, 219, 0.4);
+}
+
+.ios-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 15px rgba(147, 112, 219, 0.3);
+}
+
+/* Полоска вверху iOS (время и индикаторы) */
+.ios-status-bar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d1d1f;
+    z-index: 3;
+}
+
+.ios-time {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Контейнер для скролла */
+.portal-content {
+    max-height: calc(85vh - 180px);
+    overflow-y: auto;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+/* Скрываем скроллбар для красоты */
+.portal-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.portal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.portal-content::-webkit-scrollbar-thumb {
+    background: #c7c7cc;
+    border-radius: 2px;
+}
+
+/* Группа для буквы класса и даты рождения */
+.row-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.row-group .ios-input-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Специальный стиль для поля буквы класса */
+.letter-input {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+/* Подсказка под полями */
+.field-hint {
+    font-size: 12px;
+    color: #8e8e93;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+/* Иконки в заголовке */
+.title-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #9370db;
+}
+
+/* Убираем стандартные стрелки у поля даты */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3e%3c/rect%3e%3cline x1='16' y1='2' x2='16' y2='6'%3e%3c/line%3e%3cline x1='8' y1='2' x2='8' y2='6'%3e%3c/line%3e%3cline x1='3' y1='10' x2='21' y2='10'%3e%3c/line%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 480px) {
+    .iphone-portal {
+        border-width: 10px;
+        padding: 25px 20px;
+        border-radius: 35px;
+    }
+    
+    .iphone-title {
+        font-size: 22px;
+    }
+    
+    .ios-input, .ios-select {
+        padding: 14px;
+        font-size: 16px;
+    }
+    
+    .row-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-height: 700px) {
+    .iphone-portal {
+        max-height: 80vh;
+    }
+    
+    .portal-content {
+        max-height: calc(80vh - 180px);
+    }
+}
+
+@media (max-height: 600px) {
+    .iphone-portal {
+        max-height: 75vh;
+        padding: 20px 15px;
+    }
+    
+    .portal-content {
+        max-height: calc(75vh - 150px);
+    }
+    
+    .iphone-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+}

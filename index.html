@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🦄 Единорожья Гавань | Психологические тесты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* iPhone-подобные стили для портала */
+        .iphone-portal {
+            max-height: 85vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 40px;
+            padding: 30px 25px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 0 30px rgba(147, 112, 219, 0.1);
+            border: 12px solid #111;
+            position: relative;
+            margin: 20px;
+        }
+        
+        /* Динамическая панель (как в iPhone) */
+        .iphone-portal::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 30px;
+            background: #111;
+            border-radius: 0 0 20px 20px;
+            z-index: 2;
+        }
+        
+        /* "Камера" iPhone */
+        .iphone-portal::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+        }
+        
+        /* Заголовок iPhone-стиля */
+        .iphone-title {
+            text-align: center;
+            color: #1d1d1f;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        /* iOS-стиль для полей ввода */
+        .ios-input-group {
+            margin-bottom: 20px;
+        }
+        
+        .ios-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8e8e93;
+            margin-bottom: 6px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        .ios-input {
+            width: 100%;
+            padding: 16px;
+            background: #f2f2f7;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            color: #1d1d1f;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.2s;
+            -webkit-appearance: none;
+        }
+        
+        .ios-input:focus {
+            outline: none;
+            background: #e5e5ea;
+            box-shadow: 0 0 0 2px rgba(147, 112, 219, 0.3);
+        }
+        
+        .ios-input::placeholder {
+            color: #8e8e93;
+            opacity: 0.7;
+        }
+        
+        /* iOS-селект */
+        .ios-select {
+            width: 100%;
+            padding: 16px;
+            background: #f2f2f7;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            color: #1d1d1f;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+            padding-right: 50px;
+        }
+        
+        /* Кнопка в стиле iOS */
+        .ios-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #9370db, #ff69b4);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            box-shadow: 0 4px 20px rgba(147, 112, 219, 0.3);
+        }
+        
+        .ios-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(147, 112, 219, 0.4);
+        }
+        
+        .ios-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 15px rgba(147, 112, 219, 0.3);
+        }
+        
+        /* Полоска вверху iOS (время и индикаторы) */
+        .ios-status-bar {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1d1d1f;
+            z-index: 3;
+        }
+        
+        .ios-time {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Контейнер для скролла */
+        .portal-content {
+            max-height: calc(85vh - 180px);
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        /* Скрываем скроллбар для красоты */
+        .portal-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .portal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 2px;
+        }
+        
+        .portal-content::-webkit-scrollbar-thumb {
+            background: #c7c7cc;
+            border-radius: 2px;
+        }
+        
+        /* Прокрутка для маленьких экранов */
+        @media (max-height: 700px) {
+            .iphone-portal {
+                max-height: 80vh;
+            }
+            
+            .portal-content {
+                max-height: calc(80vh - 180px);
+            }
+        }
+        
+        /* Особенности для очень маленьких экранов */
+        @media (max-height: 600px) {
+            .iphone-portal {
+                max-height: 75vh;
+                padding: 20px 15px;
+            }
+            
+            .portal-content {
+                max-height: calc(75vh - 150px);
+            }
+            
+            .ios-input, .ios-select {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            .iphone-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+        }
+        
+        /* Группа для буквы класса и даты рождения */
+        .row-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .row-group .ios-input-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        /* Специальный стиль для поля буквы класса */
+        .letter-input {
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* Поле даты в iOS стиле */
+        .ios-date {
+            color: #1d1d1f;
+        }
+        
+        /* iOS стиль для типа единорога */
+        .unicorn-type-select {
+            background: #f2f2f7;
+        }
+        
+        /* Убираем стандартные стрелки у поля даты */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3e%3c/rect%3e%3cline x1='16' y1='2' x2='16' y2='6'%3e%3c/line%3e%3cline x1='8' y1='2' x2='8' y2='6'%3e%3c/line%3e%3cline x1='3' y1='10' x2='21' y2='10'%3e%3c/line%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 20px;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+        
+        /* Подсказка под полями */
+        .field-hint {
+            font-size: 12px;
+            color: #8e8e93;
+            margin-top: 4px;
+            margin-left: 4px;
+        }
+        
+        /* Иконки в заголовке */
+        .title-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #9370db;
+        }
+    </style>
+</head>
+<body>
+    <!-- Волшебные частички -->
+    <div id="magicParticles"></div>
+    
+    <!-- Портал регистрации в стиле iPhone -->
+    <div id="unicornPortal" class="portal-overlay">
+        <div class="iphone-portal">
+            <!-- Статус бар iPhone -->
+            <div class="ios-status-bar">
+                <div>9:41</div>
+                <div class="ios-time">9:41</div>
+                <div>
+                    <i class="fas fa-signal" style="margin-right: 5px;"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-battery-full" style="margin-left: 5px;"></i>
+                </div>
+            </div>
+            
+            <div class="title-icons">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-magic"></i>
+            </div>
+            
+            <h2 class="iphone-title">Волшебный Вход<br>в Единорожью Гавань</h2>
+            
+            <div class="portal-content">
+                <form id="unicornForm" class="magic-form">
+                    <!-- Волшебное Имя -->
+                    <div class="ios-input-group">
+                        <label class="ios-label">Волшебное Имя</label>
+                        <input type="text" id="unicornName" class="ios-input" 
+                               placeholder="Как тебя зовут, юный волшебник?" required>
+                        <div class="field-hint">Твоё настоящее или волшебное имя</div>
+                    </div>
+                    
+                    <!-- Фамилия Чародея -->
+                    <div class="ios-input-group">
+                        <label class="ios-label">Фамилия Чародея</label>
+                        <input type="text" id="unicornSurname" class="ios-input" 
+                               placeholder="Твоя магическая фамилия" required>
+                        <div class="field-hint">Наследственное волшебное имя</div>
+                    </div>
+                    
+                    <!-- Заколдованный Класс -->
+                    <div class="ios-input-group">
+                        <label class="ios-label">Заколдованный Класс</label>
+                        <select id="unicornGrade" class="ios-select" required>
+                            <option value="">Выбери свой магический класс</option>
+                            <option value="1">✨ 1 класс - Юные Волшебники</option>
+                            <option value="2">🌟 2 класс - Ученики Чародеев</option>
+                            <option value="3">💫 3 класс - Маги-Новички</option>
+                            <option value="4">🌸 4 класс - Хранители Тайн</option>
+                            <option value="5">🌺 5 класс - Повелители Стихий</option>
+                            <option value="6">🌼 6 класс - Мастера Иллюзий</option>
+                            <option value="7">🌷 7 класс - Верховные Маги</option>
+                            <option value="8">🌹 8 класс - Архимаги</option>
+                            <option value="9">🥀 9 класс - Магистры Тьмы и Света</option>
+                            <option value="10">💐 10 класс - Великие Чародеи</option>
+                            <option value="11">🪷 11 класс - Легендарные Волшебники</option>
+                        </select>
+                        <div class="field-hint">Уровень твоей магической подготовки</div>
+                    </div>
+                    
+                    <!-- Буква Класса и Дата Рождения в одной строке -->
+                    <div class="row-group">
+                        <!-- Буква Класса -->
+                        <div class="ios-input-group">
+                            <label class="ios-label">Буква Класса</label>
+                            <input type="text" id="unicornLetter" class="ios-input letter-input" 
+                                   placeholder="А" maxlength="1" style="text-transform: uppercase;">
+                            <div class="field-hint">А, Б, В...</div>
+                        </div>
+                        
+                        <!-- Дата Волшебства (Рождения) -->
+                        <div class="ios-input-group">
+                            <label class="ios-label">Дата Волшебства</label>
+                            <input type="date" id="unicornBirth" class="ios-input ios-date">
+                            <div class="field-hint">ДД.ММ.ГГГГ</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Тип Единорога -->
+                    <div class="ios-input-group">
+                        <label class="ios-label">Тип Единорога</label>
+                        <select id="unicornType" class="ios-select unicorn-type-select">
+                            <option value="">Выбери своего внутреннего единорога</option>
+                            <option value="rainbow">🌈 Радужный Единорог</option>
+                            <option value="sparkle">✨ Сверкающий Единорог</option>
+                            <option value="moon">🌙 Лунный Единорог</option>
+                            <option value="starlight">🌟 Звездный Единорог</option>
+                            <option value="flower">🌸 Цветочный Единорог</option>
+                        </select>
+                        <div class="field-hint">Кто ты в мире волшебства?</div>
+                    </div>
+                    
+                    <!-- Кнопка отправки -->
+                    <button type="submit" class="ios-button">
+                        <i class="fas fa-portal-enter"></i>
+                        Открыть Портал к Тестам!
+                        <i class="fas fa-unicorn"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Остальной код остается без изменений -->
+    <!-- Шапка сайта -->
+    <header>
+        <div class="rainbow-border"></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="unicorn-emoji">🦄</span>
+                    <h1>Единорожья Гавань</h1>
+                </div>
+                
+                <div id="unicornBadge" class="user-badge">
+                    <!-- Здесь будет информация о вошедшем пользователе -->
+                </div>
+            </div>
+        </div>
+        <div class="rainbow-border"></div>
+    </header>
+    
+    <!-- Облака -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    
+    <!-- Главная герой-секция -->
+    <main class="container">
+        <section class="hero" id="mainHero">
+            <h2>Добро пожаловать в Волшебный Мир Психологии! ✨</h2>
+            <p>
+                Где каждый тест - это магическое приключение, а результаты помогают раскрыть 
+                твои суперсилы! Наши единороги-помощники проведут тебя через удивительные 
+                психологические открытия.
+            </p>
+            
+            <button id="startMagicBtn" class="magic-btn">
+                <i class="fas fa-wand-sparkles"></i>
+                Начать Волшебное Путешествие
+                <i class="fas fa-rainbow"></i>
+            </button>
+        </section>
+        
+        <!-- Секция с тестами (скрыта до регистрации) -->
+        <section id="magicTests" style="display: none;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.8rem; color: var(--twilight-purple); margin-bottom: 20px;">
+                    <i class="fas fa-hat-wizard"></i>
+                    Выбери Свое Магическое Приключение
+                    <i class="fas fa-magic"></i>
+                </h2>
+                <div class="rainbow-border" style="width: 300px; margin: 0 auto;"></div>
+            </div>
+            
+            <div class="tests-grid">
+                <!-- Тест 1 -->
+                <div class="unicorn-card">
+                    <div class="card-icon">🌈</div>
+                    <span class="card-category">Эмоциональная Магия</span>
+                    <h3>Тест "Радуга Настроений"</h3>
+                    <p>Узнай, какие эмоции живут в твоем волшебном сердце и как ими управлять!</p>
+                    <div class="card-details">
+                        <span><i class="fas fa-clock"></i> 10-15 мин</span>
+                        <span><i class="fas fa-question-circle"></i> 20 вопросов</span>
+                        <span><i class="fas fa-crystal-ball"></i> Для всех</span>
+                    </div>
+                    <button class="magic-btn start-magic-test" data-test="mood">
+                        <i class="fas fa-rainbow"></i>
+                        Начать Тест
+                    </button>
+                </div>
+                
+                <!-- Тест 2 -->
+                <div class="unicorn-card">
+                    <div class="card-icon">🦄</div>
+                    <span class="card-category">Открытие Талантов</span>
+                    <h3>"Поиск Внутреннего Единорога"</h3>
+                    <p>Определи свои суперспособности и узнай, какой ты волшебный единорог!</p>
+                    <div class="card-details">
+                        <span><i class="fas fa-clock"></i> 15-20 мин</span>
+                        <span><i class="fas fa-question-circle"></i> 25 вопросов</span>
+                        <span><i class="fas fa-crystal-ball"></i> 5-11 класс</span>
+                    </div>
+                    <button class="magic-btn start-magic-test" data-test="unicorn">
+                        <i class="fas fa-unicorn"></i>
+                        Начать Поиск
+                    </button>
+                </div>
+                
+                <!-- Тест 3 -->
+                <div class="unicorn-card">
+                    <div class="card-icon">✨</div>
+                    <span class="card-category">Дружба и Общение</span>
+                    <h3>"Магия Дружбы"</h3>
+                    <p>Проверь свои навыки общения и узнай, какой ты друг для окружающих!</p>
+                    <div class="card-details">
+                        <span><i class="fas fa-clock"></i> 12-18 мин</span>
+                        <span><i class="fas fa-question-circle"></i> 18 вопросов</span>
+                        <span><i class="fas fa-crystal-ball"></i> Для всех</span>
+                    </div>
+                    <button class="magic-btn start-magic-test" data-test="friendship">
+                        <i class="fas fa-users"></i>
+                        Проверить Магию
+                    </button>
+                </div>
+                
+                <!-- Тест 4 -->
+                <div class="unicorn-card">
+                    <div class="card-icon">🌟</div>
+                    <span class="card-category">Будущее и Мечты</span>
+                    <h3>"Карта Волшебного Пути"</h3>
+                    <p>Определи, куда ведет твоя дорога мечты и какие профессии тебе подходят!</p>
+                    <div class="card-details">
+                        <span><i class="fas fa-clock"></i> 20-25 мин</span>
+                        <span><i class="fas fa-question-circle"></i> 30 вопросов</span>
+                        <span><i class="fas fa-crystal-ball"></i> 8-11 класс</span>
+                    </div>
+                    <button class="magic-btn start-magic-test" data-test="future">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Построить Карту
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Контейнер для теста -->
+        <div id="testCastle"></div>
+        
+        <!-- Секция о проекте -->
+        <section id="magicAbout" style="display: none; padding: 80px 0;">
+            <div class="unicorn-card" style="max-width: 1000px; margin: 0 auto;">
+                <h3 style="text-align: center; margin-bottom: 30px; color: var(--twilight-purple);">
+                    <i class="fas fa-scroll"></i>
+                    О Волшебном Проекте
+                </h3>
+                <p style="font-size: 1.2rem; line-height: 1.8;">
+                    "Единорожья Гавань" — это магическое пространство, где психология встречается с волшебством. 
+                    Наши тесты созданы специально для школьников, чтобы в игровой и сказочной форме помочь им 
+                    лучше понять себя, свои эмоции, таланты и мечты.
+                </p>
+                <div style="display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <h4><i class="fas fa-shield-alt"></i> Безопасность</h4>
+                        <p>Все данные защищены магическими заклинаниями конфиденциальности</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <h4><i class="fas fa-heart"></i> Поддержка</h4>
+                        <p>Каждый результат сопровождается полезными рекомендациями</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <h4><i class="fas fa-gem"></i> Уникальность</h4>
+                        <p>Только у нас тесты проводят волшебные единороги!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-unicorn"></i> Контакты Волшебников</h3>
+                    <div class="unicorn-contact">
+                        <p><i class="fas fa-hat-wizard"></i> Главный Волшебник-Психолог:</p>
+                        <p><i class="fas fa-phone-alt"></i> 📞 +7 (800) 555-35-35</p>
+                        <p><i class="fas fa-envelope"></i> ✉️ unicorn@magic-school.ru</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 🏰 Кабинет 404, 4 этаж</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-clock"></i> Часы Магии</h3>
+                    <p>Понедельник: 9:00 - 16:00</p>
+                    <p>Вторник: 9:00 - 16:00</p>
+                    <p>Среда: 9:00 - 16:00</p>
+                    <p>Четверг: 9:00 - 16:00</p>
+                    <p>Пятница: 9:00 - 15:00</p>
+                    <p style="margin-top: 15px; color: var(--rainbow-yellow);">
+                        <i class="fas fa-moon"></i> По субботам - особые магические сессии!
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-scroll"></i> Магические Правила</h3>
+                    <p>Все тесты проводятся с согласия родителей</p>
+                    <p>Результаты используются только для помощи</p>
+                    <p>Конфиденциальность гарантируется заклинаниями</p>
+                    <p>Можно пройти тест с родителями или друзьями</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Единорожья Гавань | Школа Магической Психологии</p>
+                <p style="margin-top: 10px;">
+                    <i class="fas fa-magic"></i>
+                    Сделано с любовью, радугой и блестками!
+                    <i class="fas fa-sparkles"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
